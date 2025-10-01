@@ -52,3 +52,4 @@ uv run python send_csv.py multi_doc_contracts.csv
 - Artifacts (JSONL + HTML) are under `outputs/`. The service serves HTML reports at `/artifacts/<name>.html` if `SAVE_ARTIFACTS=1`.
 - To pin Python explicitly, create `.python-version` (e.g., `3.11`) and run `uv python install`.
 # vigilant-octo-broccoli
+# vigilant-octo-broccoli
