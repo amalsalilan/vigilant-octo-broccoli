@@ -1,0 +1,95 @@
+column_name,what_to_extract,examples
+Ramp Up Period (Y/N) & %,"Extract whether ramp-up applies (yes/no), the percentage rate (number), and the tenure in months (number).
+Use attributes: ramp_up_applicable, %_rate, tenure_in_months.
+Copy spans exactly from input; return JSON only.","[
+  {
+    ""text"": ""Ramp-up applies at 10% for 36 months"",
+    ""extractions"": [
+      {
+        ""class"": ""ramp_up"",
+        ""span"": ""Ramp-up applies at 10% for 36 months"",
+        ""attributes"": {
+          ""ramp_up_applicable"": ""yes"",
+          ""%_rate"": ""10"",
+          ""tenure_in_months"": ""36""
+        }
+      }
+    ]
+  }
+]"
+Termination Clause,"Extract the exact termination clause span from the input. Copy the sentence(s) that state termination rights, notice periods, causes, or fees. Do not summarize or restate the definition. Return nothing if it not explicitly present","[
+  {
+    ""text"": ""Either Party may terminate with ninety (90) days' notice or as otherwise required by applicable regulation."",
+    ""extractions"": [
+      {
+        ""class"": ""termination_clause"",
+        ""span"": ""Either Party may terminate with ninety (90) days' notice or as otherwise required by applicable regulation."",
+        ""attributes"": {}
+      }
+    ]
+  },
+  {
+    ""text"": ""This Agreement may be terminated for breach with immediate effect upon written notice specifying the breach."",
+    ""extractions"": [
+      {
+        ""class"": ""termination_clause"",
+        ""span"": ""This Agreement may be terminated for breach with immediate effect upon written notice specifying the breach."",
+        ""attributes"": {}
+      }
+    ]
+  },
+  {
+    ""text"": ""Termination Clause: Specifies the conditions under which the agreement may be terminated early and the penalties or fees that apply."",
+    ""extractions"": []
+  }
+]"
+Governing Law,Identifies the jurisdiction and governing law applicable to the agreement.,"[
+lx.data.ExampleData(
+    text=""This Agreement shall be governed by and construed in accordance with the laws of the State of New York."",
+    extractions=[
+        lx.data.Extraction(
+            extraction_class=""governing_law"",
+            extraction_text=""laws of the State of New York"",
+            attributes={
+                ""jurisdiction"": ""New York""
+            }
+        )
+    ]
+)
+]"
+Up-sale Rate %,"Extract details about rate increases and service fees.
+Specifically capture:
+- The percentage increase (numeric)
+- The time period after which it applies (numeric or text)
+- Any mention of fees and charges for services.
+Use attributes: percentage_increase, time_period, fees_charges.
+Copy spans exactly from input; return JSON only.","[
+  {
+    ""text"": ""Rate will increase by 5% after 12 months"",
+    ""extractions"": [
+      {
+        ""class"": ""up_sale_rate"",
+        ""span"": ""Rate will increase by 5% after 12 months"",
+        ""attributes"": {
+          ""percentage_increase"": ""5"",
+          ""time_period"": ""12 months"",
+          ""fees_charges"": """"
+        }
+      }
+    ]
+  },
+  {
+    ""text"": ""Fees and Charges for Services include installation and support fees."",
+    ""extractions"": [
+      {
+        ""class"": ""up_sale_rate"",
+        ""span"": ""Fees and Charges for Services include installation and support fees."",
+        ""attributes"": {
+          ""percentage_increase"": """",
+          ""time_period"": """",
+          ""fees_charges"": ""installation and support fees""
+        }
+      }
+    ]
+  }
+]"

@@ -1,0 +1,28 @@
+[project]
+name = "langextract-service"
+version = "0.1.0"
+description = "FastAPI adapter + CSV client for LangExtract (Ollama)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.112",
+    "pydantic>=2.6",
+    "pandas>=2.0",
+    "requests>=2.31",
+    "uvicorn>=0.29",
+    "langextract"
+]
+
+[build-system]
+requires = ["hatchling>=1.18.0"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+# This repository is an application (no importable package)
+package = false
+
+# If the 'langextract' package is not available from PyPI in your environment,
+# configure its source (e.g., path or Git URL) in a [tool.uv.sources] table.
+# For example:
+# [tool.uv.sources]
+# langextract = { git = "https://github.com/your-org/langextract.git", rev = "main" }
